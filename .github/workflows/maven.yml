@@ -30,9 +30,10 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
     - name: Build and test
+      env: 
+          FASTLANE_EXPLICIT_OPEN_SIMULATOR: "2"
       run: |
-          xcodebuild clean test -project AirConnect.xcodeproj -scheme AirConnect -destination 'platform=OS X,arch=x86_64' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO
-        
+          xcodebuild clean test -project AirConnect.xcodeproj -scheme AirConnect -destination 'platform=OS X,arch=x86_64' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -verbose
     # - name: Execute Jar File
       # run: sudo kill -9 `sudo lsof -t -i:80` & sudo java -jar /home/ubuntu/actions-runner/_work/javarepo/javarepo/target/cicd-0.0.1-SNAPSHOT.jar &
 
